@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.useProvideWallet = exports.WalletKeys = exports.Modes = exports.Ultrade = void 0;
+const Ultrade_1 = require("./Ultrade");
+Object.defineProperty(exports, "Ultrade", { enumerable: true, get: function () { return Ultrade_1.Ultrade; } });
+Object.defineProperty(exports, "Modes", { enumerable: true, get: function () { return Ultrade_1.Modes; } });
+const useProvideWallet_1 = require("./useProvideWallet");
+Object.defineProperty(exports, "WalletKeys", { enumerable: true, get: function () { return useProvideWallet_1.WalletKeys; } });
+Object.defineProperty(exports, "useProvideWallet", { enumerable: true, get: function () { return useProvideWallet_1.useProvideWallet; } });
+(0, useProvideWallet_1.createUltradeObj)();
+console.log("window.Ultrade ", window.Ultrade);

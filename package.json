@@ -1,0 +1,28 @@
+{
+  "name": "@ultrade/react-embed",
+  "version": "0.1.0",
+  "description": "React component to easily embed an Ultrade application to your page",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ultrade-org/react-embed.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ultrade-org/react-embed/issues"
+  },
+  "homepage": "https://github.com/ultrade-org/react-embed#readme",
+  "dependencies": {
+    "@blockshake/defly-connect": "^1.1.2",
+    "@perawallet/connect": "^1.2.2",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.33"
+  }
+}
