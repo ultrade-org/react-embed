@@ -10,7 +10,8 @@ declare global {
 export declare enum WalletKeys {
     UseWallet = "txnlab-use-wallet",
     Pera = "PeraWallet.Wallet",
-    Defly = "DeflyWallet.Wallet"
+    Defly = "DeflyWallet.Wallet",
+    MyAlgo = "MyAlgoWallet"
 }
 type UseWalletSign = (transactions: Uint8Array[], indexesToSign?: number[], returnGroup?: boolean) => Promise<Uint8Array[]>;
 type PeraWalletSign = (txGroups: SignerTransaction[][], signerAddress?: string | undefined) => Promise<Uint8Array[]>;

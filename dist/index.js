@@ -8,4 +8,3 @@ const useProvideWallet_1 = require("./useProvideWallet");
 Object.defineProperty(exports, "WalletKeys", { enumerable: true, get: function () { return useProvideWallet_1.WalletKeys; } });
 Object.defineProperty(exports, "useProvideWallet", { enumerable: true, get: function () { return useProvideWallet_1.useProvideWallet; } });
 (0, useProvideWallet_1.createUltradeObj)();
-console.log("window.Ultrade ", window.Ultrade);

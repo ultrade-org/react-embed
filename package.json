@@ -1,6 +1,6 @@
 {
   "name": "@ultrade/react-embed",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React component to easily embed an Ultrade application to your page",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

@@ -14,6 +14,7 @@ export enum WalletKeys {
     UseWallet = 'txnlab-use-wallet',
     Pera = 'PeraWallet.Wallet',
     Defly = 'DeflyWallet.Wallet',
+    MyAlgo = 'MyAlgoWallet',
 };  
 
 type UseWalletSign = (transactions: Uint8Array[], indexesToSign?: number[], returnGroup?: boolean) => Promise<Uint8Array[]>;
@@ -28,6 +29,10 @@ export const createUltradeObj = () => {
 
 export const useProvideWallet = () => {
     const setSignFunction = useCallback((walletProvider: WalletKeys, sign: UseWalletSign | PeraWalletSign | DeflyWalletSign) => {
+        window.Ultrade[WalletKeys.UseWallet] = undefined;
+        window.Ultrade[WalletKeys.Pera] = undefined;
+        window.Ultrade[WalletKeys.Defly] = undefined;
+        window.Ultrade[WalletKeys.MyAlgo] = undefined;
         window.Ultrade[walletProvider] = sign;
     }, []);
 

@@ -7,6 +7,7 @@ var WalletKeys;
     WalletKeys["UseWallet"] = "txnlab-use-wallet";
     WalletKeys["Pera"] = "PeraWallet.Wallet";
     WalletKeys["Defly"] = "DeflyWallet.Wallet";
+    WalletKeys["MyAlgo"] = "MyAlgoWallet";
 })(WalletKeys = exports.WalletKeys || (exports.WalletKeys = {}));
 ;
 const createUltradeObj = () => {
@@ -17,6 +18,10 @@ const createUltradeObj = () => {
 exports.createUltradeObj = createUltradeObj;
 const useProvideWallet = () => {
     const setSignFunction = (0, react_1.useCallback)((walletProvider, sign) => {
+        window.Ultrade[WalletKeys.UseWallet] = undefined;
+        window.Ultrade[WalletKeys.Pera] = undefined;
+        window.Ultrade[WalletKeys.Defly] = undefined;
+        window.Ultrade[WalletKeys.MyAlgo] = undefined;
         window.Ultrade[walletProvider] = sign;
     }, []);
     const clearSignFunction = (0, react_1.useCallback)((walletProvider) => {

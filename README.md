@@ -3,11 +3,6 @@
 
 [![N|Solid](https://testnet.ultrade.org/Theme%3DLight.svg)](https://ultrade.org)
 
-## Features
-
-- feature 1
-- feature 2
-
 ## Installation
 
 
@@ -18,7 +13,7 @@ npm i @ultrade/react-embed
 
 ## Usage
 
-
+### Basic implementation
 ```js
 import { Ultrade } from '@ultrade/react-embed';
 
@@ -26,58 +21,86 @@ const YourApp = () => {
     return (
         <>
             <SomeYourAppTag/>
-            <Ultrade src={'https://testnet.ultrade.org'}/>
+            <Ultrade/>
         </>
     );
 }
 ```
-> Note: `src='<URL_TO_ULTRADE_APPLICATION>'` is needed only if you want to use testnet version of ultrade application.
 
-#### If you want to inherit wallet connection from your application use this: 
+### Widget mode
+Wigdet is a simple buy sell interface that can be embedded without the full exchange UI.
 ```js
-import { Ultrade } from '@ultrade/react-embed';
-import { WalletKeys, useProvideWallet } from "alexeyby-react-embed";
-import { useEffect, useMemo } from "react";
+<Ultrade mode='widget'/>
+```
+
+### Connection to testnet 
+```js
+<Ultrade src={'https://testnet.ultrade.org'}/>
+```
+
+> Note: `src='<URL_TO_ULTRADE_APPLICATION>'` is needed only for TestNet not for MainNet.
+#
+#
+#### Optional: you can inherit wallet connection from your application. Use "useProvideWallet" hook and a walletInheritance property:
+> The `setSignFunction` is used to enable the aplication to send transactions to your wallet provider. The function accepts 2 parameters: first an identifier for your wallet provider, second is passing a sign function from your wallet provider.
+```js
+import { useProvideWallet } from "@ultrade/react-embed";
+const { setSignFunction } = useProvideWallet();
+setSignFunction('<Key from WalletKeys specifying your wallet provider>', signFunction)
+<Ultrade walletInheritance={true}/>
+```
+> `WalletKeys` is a TypeScript enum. For JavaScript you can provide any key directly without using enum.
+Examples:
+#
+```js
+//js
+setSignFunction('txnlab-use-wallet', signTransactions);
+setSignFunction('PeraWallet.Wallet', (tx) => peraWallet.signTransaction(tx));
+setSignFunction('DeflyWallet.Wallet', (tx) => deflyWallet.signTransaction(tx));
+setSignFunction('MyAlgoWallet', (tx) => myAlgoSign(tx));
+//ts
+import { WalletKeys } from "@ultrade/react-embed";
+setSignFunction(WalletKeys.UseWallet, signTransactions);
+setSignFunction(WalletKeys.Pera, (tx) => peraWallet.signTransaction(tx));
+setSignFunction(WalletKeys.Defly, (tx) => deflyWallet.signTransaction(tx));
+setSignFunction(WalletKeys.MyAlgo, (tx) => myAlgoSign(tx));
+```
+#
+`clearSignFunction` is used to remove a provided signFunction.
+Use it if you want to switch from one wallet provider to another one.
+#
+#### Usage example
+```js
+import { WalletKeys, useProvideWallet, Ultrade } from "@ultrade/react-embed"; //import Ultrade 
+import { useEffect, useMemo } from "react"; //import React
 
 const YourApp = () => {
-    const someWallet = useMemo(() => new SomeWalletConnect({...}), []);
-    const { setSignFunction, clearSignFunction } = useProvideWallet();
+    const peraWallet = useMemo(() => new PeraWalletConnect({...}), []); //create wallet provider
+    const { setSignFunction, clearSignFunction } = useProvideWallet(); //use Ultrade hook
     
     useEffect(() => {
-        setSignFunction(WalletKeys.Pera, (tx) => someWallet.signTransaction(tx));
-        return () => clearSignFunction(WalletKeys.Pera);
+        setSignFunction(WalletKeys.Pera, (tx) => peraWallet.signTransaction(tx)); //provide sign function to Ultrade App
+        return () => clearSignFunction(WalletKeys.Pera); //remove sign function in case if your component was unmounted
     }, [peraWallet, setSignFunction, clearSignFunction]);
  
     return (
         <>
             <SomeYourAppTag/>
-            <Ultrade walletInheritance={true}/>
+            <Ultrade walletInheritance={true}/> //render Ultrade application
         </>
   );
 }
 ```
 
-> Here `WalletKeys` is enum You can use it in TypeScript and if you use Java Script you can provide any key from that enum directly without using it. Like that `setSignFunction('PeraWallet.Wallet', yourSignFn)`.
-
-```
-enum WalletKeys {
-    UseWallet = 'txnlab-use-wallet',
-    Pera = 'PeraWallet.Wallet',
-    Defly = 'DeflyWallet.Wallet',
-};  
-```
-> And a setSignFunction is a function that accespt as a second argument sign function from your wallet provider like that
+## Styles
+Ultrade component will fill it's container size. You can controll the size by it's container size like this
 ```js
-const { signTransactions } = useWallet(); //For useWallet
-const deflyWallet = new DeflyWalletConnect({...}); //For defly
-const peraWallet = new PeraWalletConnect({...}); //For pera
-
-//arrow function here is to not lose context of the wallet
-setSignFunction(WalletKeys.Pera, (tx) => peraWallet.signTransaction(tx));
-setSignFunction(WalletKeys.Defly, (tx) => deflyWallet.signTransaction(tx));
-setSignFunction(WalletKeys.UseWallet, signTransactions);
+<div width='100%' height='80%'><Ultrade/><div/>
 ```
+
+## Tips
+The widget mode is optimized for this sizes "width: '380px' height: '625px"
+
 
 ## License
-
-MIT???
+MIT
