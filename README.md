@@ -1,5 +1,5 @@
 # ULTRADE REACT EMBED
-## _Easyest way to ebmbed the Ultrade in a react application_
+## _Easiest way to ebmbed the Ultrade in a react application_
 
 [![N|Solid](https://testnet.ultrade.org/Theme%3DLight.svg)](https://ultrade.org)
 
@@ -20,7 +20,7 @@ import { Ultrade } from '@ultrade/react-embed';
 const YourApp = () => {
     return (
         <>
-            <SomeYourAppTag/>
+            <YourAppTag/>
             <Ultrade/>
         </>
     );
@@ -28,7 +28,8 @@ const YourApp = () => {
 ```
 
 ### Widget mode
-Wigdet is a simple buy sell interface that can be embedded without the full exchange UI.
+By default the tag will render the full Ultrade exchange interface. Putting the following attribute will render a widget - a simple buy/sell interface.
+
 ```js
 <Ultrade mode='widget'/>
 ```
@@ -40,7 +41,19 @@ Wigdet is a simple buy sell interface that can be embedded without the full exch
 
 > Note: `src='<URL_TO_ULTRADE_APPLICATION>'` is needed only for TestNet not for MainNet.
 #
+
+## Styles 
+Ultrade component will fill it's container size. You can controll the size by it's container size like shown below. The widget mode is optimized for this sizes "width: '380px' height: '625px".
+
+```js
+<div width='100%' height='80%'>
+    <Ultrade/>
+<div/>
+```
 #
+
+## Wallet inheritance
+
 #### Optional: you can inherit wallet connection from your application. Use "useProvideWallet" hook and a walletInheritance property:
 > The `setSignFunction` is used to enable the aplication to send transactions to your wallet provider. The function accepts 2 parameters: first an identifier for your wallet provider, second is passing a sign function from your wallet provider.
 ```js
@@ -69,7 +82,8 @@ setSignFunction(WalletKeys.MyAlgo, (tx) => myAlgoSign(tx));
 `clearSignFunction` is used to remove a provided signFunction.
 Use it if you want to switch from one wallet provider to another one.
 #
-#### Usage example
+
+## Usage example
 ```js
 import { WalletKeys, useProvideWallet, Ultrade } from "@ultrade/react-embed"; //import Ultrade 
 import { useEffect, useMemo } from "react"; //import React
@@ -85,21 +99,18 @@ const YourApp = () => {
  
     return (
         <>
-            <SomeYourAppTag/>
-            <Ultrade walletInheritance={true}/> //render Ultrade application
+            <YourAppTag/> 
+            <div width='100%' height='80%'> 
+                <Ultrade  //render Ultrade application
+                    mode='widget' 
+                    src={'https://testnet.ultrade.org'} 
+                    walletInheritance={true}
+                />
+            <div/>
         </>
   );
 }
 ```
-
-## Styles
-Ultrade component will fill it's container size. You can controll the size by it's container size like this
-```js
-<div width='100%' height='80%'><Ultrade/><div/>
-```
-
-## Tips
-The widget mode is optimized for this sizes "width: '380px' height: '625px"
 
 
 ## License
