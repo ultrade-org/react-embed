@@ -3,6 +3,7 @@ type UltradeProps = {
   mode?: Modes;
   src?: 'https://ultrade.org' | 'https://tetstnet.ultrade.org';
   walletInheritance?: boolean;
+  symbol?: string; 
 }
 
 export enum Modes {
@@ -11,25 +12,26 @@ export enum Modes {
 
 const Api: { [name:string]: string } = {
   'https://ultrade.org': '',
-  'https://tetstnet.ultrade.org': 'https://testnet-apigw.ultradedev.net',
-  'https://dev.ultradedev.net': 'https://dev-apigw.ultradedev.net',
-  'https://dev4.ultradedev.net': 'https://dev4-apigw.ultradedev.net',
-  'https://stage2.ultradedev.net': 'https://stage2-apigw.ultradedev.net',
+  'https://tetstnet.ultrade.org': 'https://api.testnet.ultradedev.net',
+  'https://dev.ultradedev.net': 'https://api.dev.ultradedev.net',
+  'https://dev4.ultradedev.net': 'https://api.dev4.ultradedev.net',
+  'https://stage2.ultradedev.net': 'https://api.stage.ultradedev.net',
   'http://localhost:3001': 'http://localhost:5001',
 };
 
-export const Ultrade = ({mode, src='https://ultrade.org', walletInheritance}: UltradeProps) => {
+export const Ultrade = ({mode, src='https://ultrade.org', walletInheritance, symbol}: UltradeProps) => {
   const apiUrl = Api[src];
   if (!apiUrl) throw new Error('Wrong Ultrade url');
   
-  let snippetUrl = `${apiUrl}/wl/snippet?test=test`;
-  if (walletInheritance) snippetUrl += '&walletInheritance=true';
-  if (mode) snippetUrl += `&mode=${mode}`;
+  const snippetUrl = new URL(`${apiUrl}/wl/snippet`);
+  if (walletInheritance) snippetUrl.searchParams.set('walletInheritance', 'true');
+  if (mode) snippetUrl.searchParams.set('mode', mode);
+  if (symbol) snippetUrl.searchParams.set('symbol', symbol);
 
   const ultradeRootRef = useRef<HTMLDivElement>();
   useEffect(() => {
     const script = document.createElement('script');
-    script.src = snippetUrl;
+    script.src = snippetUrl.href;
     script.async = true;
 
     ultradeRootRef.current.appendChild(script);
