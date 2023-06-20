@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 type UltradeProps = {
   mode?: Modes;
-  src?: 'https://ultrade.org' | 'https://tetstnet.ultrade.org';
+  src?: 'https://ultrade.org' | 'https://testnet.ultrade.org';
   walletInheritance?: boolean;
   symbol?: string; 
 }
@@ -12,7 +12,7 @@ export enum Modes {
 
 const Api: { [name:string]: string } = {
   'https://ultrade.org': '',
-  'https://tetstnet.ultrade.org': 'https://api.testnet.ultradedev.net',
+  'https://testnet.ultrade.org': 'https://api.testnet.ultrade.org',
   'https://dev.ultradedev.net': 'https://api.dev.ultradedev.net',
   'https://dev4.ultradedev.net': 'https://api.dev4.ultradedev.net',
   'https://stage2.ultradedev.net': 'https://api.stage.ultradedev.net',

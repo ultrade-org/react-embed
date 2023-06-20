@@ -1,6 +1,6 @@
 {
   "name": "@ultrade/react-embed",
-  "version": "0.1.2",
+  "version": "0.1.5",
   "description": "React component to easily embed an Ultrade application to your page",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -25,5 +25,5 @@
   "devDependencies": {
     "@types/react": "^18.0.33"
   },
-  "keywords": ["Ultrade", "DEX", "Exchange"]
+  "keywords": ["Ultrade", "DEX", "Exchange", "React"]
 }
