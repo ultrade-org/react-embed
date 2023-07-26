@@ -1,7 +1,7 @@
 /// <reference types="react" />
 type UltradeProps = {
     mode?: Modes;
-    src?: 'https://ultrade.org' | 'https://testnet.ultrade.org';
+    src?: 'https://app.ultrade.org' | 'https://testnet.ultrade.org';
     walletInheritance?: boolean;
     symbol?: string;
 };

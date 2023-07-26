@@ -31,14 +31,10 @@ var Modes;
 })(Modes = exports.Modes || (exports.Modes = {}));
 ;
 const Api = {
-    'https://ultrade.org': '',
+    'https://app.ultrade.org': 'https://api.ultrade.org',
     'https://testnet.ultrade.org': 'https://api.testnet.ultrade.org',
-    'https://dev.ultradedev.net': 'https://api.dev.ultradedev.net',
-    'https://dev4.ultradedev.net': 'https://api.dev4.ultradedev.net',
-    'https://stage2.ultradedev.net': 'https://api.stage.ultradedev.net',
-    'http://localhost:3001': 'http://localhost:5001',
 };
-const Ultrade = ({ mode, src = 'https://ultrade.org', walletInheritance, symbol }) => {
+const Ultrade = ({ mode, src = 'https://app.ultrade.org', walletInheritance, symbol }) => {
     const apiUrl = Api[src];
     if (!apiUrl)
         throw new Error('Wrong Ultrade url');
