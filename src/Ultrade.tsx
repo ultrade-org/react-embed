@@ -11,12 +11,8 @@ export enum Modes {
 };
 
 const Api: { [name:string]: string } = {
-  'https://ultrade.org': '',
+  'https://app.ultrade.org': 'https://api.ultrade.org',
   'https://testnet.ultrade.org': 'https://api.testnet.ultrade.org',
-  'https://dev.ultradedev.net': 'https://api.dev.ultradedev.net',
-  'https://dev4.ultradedev.net': 'https://api.dev4.ultradedev.net',
-  'https://stage2.ultradedev.net': 'https://api.stage.ultradedev.net',
-  'http://localhost:3001': 'http://localhost:5001',
 };
 
 export const Ultrade = ({mode, src='https://ultrade.org', walletInheritance, symbol}: UltradeProps) => {
