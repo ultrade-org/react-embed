@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 type UltradeProps = {
   mode?: Modes;
-  src?: 'https://ultrade.org' | 'https://testnet.ultrade.org';
+  src?: 'https://app.ultrade.org' | 'https://testnet.ultrade.org';
   walletInheritance?: boolean;
   symbol?: string; 
 }
@@ -15,7 +15,7 @@ const Api: { [name:string]: string } = {
   'https://testnet.ultrade.org': 'https://api.testnet.ultrade.org',
 };
 
-export const Ultrade = ({mode, src='https://ultrade.org', walletInheritance, symbol}: UltradeProps) => {
+export const Ultrade = ({mode, src='https://app.ultrade.org', walletInheritance, symbol}: UltradeProps) => {
   const apiUrl = Api[src];
   if (!apiUrl) throw new Error('Wrong Ultrade url');
   
