@@ -46,9 +46,9 @@ By default the tag will render the full Ultrade exchange interface. Putting the 
 Ultrade component will fill it's container size. You can controll the size by it's container size like shown below. The widget mode is optimized for this sizes "width: '380px' height: '625px".
 
 ```js
-<div width='100%' height='80%'>
+<div style={{ width:"100%", height:"80%" }}>
     <Ultrade/>
-<div/>
+</div>
 ```
 #
 
@@ -100,13 +100,13 @@ const YourApp = () => {
     return (
         <>
             <YourAppTag/> 
-            <div width='100%' height='80%'> 
+            <div style={{ width:"100%", height:"80%" }}> 
                 <Ultrade  //render Ultrade application
                     mode='widget' 
                     src={'https://testnet.ultrade.org'} 
                     walletInheritance={true}
                 />
-            <div/>
+            </div>
         </>
   );
 }

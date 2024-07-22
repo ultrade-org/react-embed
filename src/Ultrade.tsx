@@ -23,6 +23,9 @@ export const Ultrade = ({mode, src='https://app.ultrade.org', walletInheritance,
   if (walletInheritance) snippetUrl.searchParams.set('walletInheritance', 'true');
   if (mode) snippetUrl.searchParams.set('mode', mode);
   if (symbol) snippetUrl.searchParams.set('symbol', symbol);
+  const queryParameters = new URLSearchParams(window.location.search)
+  const selectedMarket = queryParameters.get("selectedMarket");
+  if (selectedMarket) snippetUrl.searchParams.set('selectedMarket', selectedMarket);
 
   const ultradeRootRef = useRef<HTMLDivElement>();
   useEffect(() => {

@@ -45,6 +45,10 @@ const Ultrade = ({ mode, src = 'https://app.ultrade.org', walletInheritance, sym
         snippetUrl.searchParams.set('mode', mode);
     if (symbol)
         snippetUrl.searchParams.set('symbol', symbol);
+    const queryParameters = new URLSearchParams(window.location.search);
+    const selectedMarket = queryParameters.get("selectedMarket");
+    if (selectedMarket)
+        snippetUrl.searchParams.set('selectedMarket', selectedMarket);
     const ultradeRootRef = (0, react_1.useRef)();
     (0, react_1.useEffect)(() => {
         const script = document.createElement('script');
